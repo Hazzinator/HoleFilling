@@ -37,7 +37,7 @@ public class SlowHoleFiller extends HoleFillerBase implements IHoleFiller {
     @Override
     public void fillHole(IPixelMatrix inputMatrix, IPixelMatrix mask) {
         var holePixels = holeInterlacer.interlace(inputMatrix, mask);
-        var boundaryPixels = boundaryFinder.findBoundaryElements(inputMatrix, holePixels, connectivityType);
+        var boundaryPixels = boundaryFinder.findBoundaryPixels(inputMatrix, holePixels, connectivityType);
 
         FillHoleSlow(inputMatrix, boundaryPixels, holePixels);
         ThrowIfHoleStillExists(inputMatrix);

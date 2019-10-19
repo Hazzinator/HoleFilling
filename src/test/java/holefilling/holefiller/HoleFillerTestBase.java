@@ -27,8 +27,8 @@ public class HoleFillerTestBase {
             Set<IPixel> holeBoundaryElements) {
 
         IBoundaryFinder boundaryFinder = mock(IBoundaryFinder.class);
-        when(boundaryFinder.findBoundaryElements(any(IPixelMatrix.class), eq(connectivityType))).thenReturn(boundaryElements);
-        when(boundaryFinder.findBoundaryElements(any(IPixelMatrix.class), any(Set.class), eq(connectivityType))).thenReturn(boundaryElements);
+        when(boundaryFinder.findBoundaryPixels(any(IPixelMatrix.class), eq(connectivityType))).thenReturn(boundaryElements);
+        when(boundaryFinder.findBoundaryPixels(any(IPixelMatrix.class), any(Set.class), eq(connectivityType))).thenReturn(boundaryElements);
         when(boundaryFinder.findBoundaryConnectedHolePixels(any(IPixelMatrix.class), eq(connectivityType))).thenReturn(holeBoundaryElements);
         when(boundaryFinder.findBoundaryConnectedHolePixels(any(IPixelMatrix.class),any(Set.class), eq(connectivityType))).thenReturn(holeBoundaryElements);
         return boundaryFinder;

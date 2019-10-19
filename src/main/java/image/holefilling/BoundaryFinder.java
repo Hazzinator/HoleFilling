@@ -7,28 +7,22 @@ import image.matrix.pixel.IPixelMatrix;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 public class BoundaryFinder implements IBoundaryFinder {
 
-    public Set<IPixel> findBoundaryElements(IPixelMatrix matrix, IConnectivityType connectivityType) {
+    public Set<IPixel> findBoundaryPixels(IPixelMatrix matrix, IConnectivityType connectivityType) {
         var holeElements = matrix.findAllHolePixels();
-        return findBoundaryElements(matrix, holeElements, connectivityType);
+        return findBoundaryPixels(matrix, holeElements, connectivityType);
     }
 
-    public Set<IPixel> findBoundaryElements(
+    public Set<IPixel> findBoundaryPixels(
             IPixelMatrix matrix,
             Set<IPixel> holeElements,
             IConnectivityType connectivityType) {
 
         HashSet<IPixel> boundaryPixels = new HashSet<>();
         for (IPixel holeElement : holeElements) {
-            List<IPixel> nonHoleConnectedPixels = connectivityType
-                    .findConnectedPixels(matrix, holeElement)
-                    .stream()
-                    .filter(e -> e.getValue() >= 0)
-                    .collect(Collectors.toList());
-
+            List<IPixel> nonHoleConnectedPixels = connectivityType.findNonHoleConnectedPixels(matrix, holeElement);
             boundaryPixels.addAll(nonHoleConnectedPixels);
         }
         return boundaryPixels;

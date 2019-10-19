@@ -34,9 +34,10 @@ public class FastHoleFiller extends HoleFillerBase implements IHoleFiller {
     @Override
     public void fillHole(IPixelMatrix inputMatrix, IPixelMatrix mask) {
         var holePixels = holeInterlacer.interlace(inputMatrix, mask);
-        var holeBoundaryPixels = boundaryFinder.findBoundaryConnectedHolePixels(inputMatrix, holePixels, connectivityType);
+        var holePixelsConnectedToBoundary =
+                boundaryFinder.findBoundaryConnectedHolePixels(inputMatrix, holePixels, connectivityType);
 
-        fillHoleFast(inputMatrix, holeBoundaryPixels);
+        fillHoleFast(inputMatrix, holePixelsConnectedToBoundary);
         ThrowIfHoleStillExists(inputMatrix);
     }
 

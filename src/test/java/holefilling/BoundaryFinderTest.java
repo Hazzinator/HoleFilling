@@ -28,7 +28,7 @@ public class BoundaryFinderTest {
 
         var matrix = MatrixTestFactory.CreatePixelMatrixIncrementalValues();
 
-        var boundaryPixels = boundaryFinder.findBoundaryElements(matrix, new EightConnectivity());
+        var boundaryPixels = boundaryFinder.findBoundaryPixels(matrix, new EightConnectivity());
 
         Assert.assertEquals(boundaryPixels.size(), 0);
     }
@@ -41,7 +41,7 @@ public class BoundaryFinderTest {
 
         var matrix = MatrixTestFactory.CreatePixelMatrixIncrementalValues();
 
-        var boundaryPixels = boundaryFinder.findBoundaryElements(matrix, new FourConnectivity());
+        var boundaryPixels = boundaryFinder.findBoundaryPixels(matrix, new FourConnectivity());
 
         Assert.assertEquals(boundaryPixels.size(), 0);
     }
@@ -53,7 +53,7 @@ public class BoundaryFinderTest {
 
         var matrix = MatrixTestFactory.CreateSmallPixelMatrix4ConnectedHole();
 
-        var boundaryPixels = boundaryFinder.findBoundaryElements(matrix, new FourConnectivity());
+        var boundaryPixels = boundaryFinder.findBoundaryPixels(matrix, new FourConnectivity());
 
         matrix.dump();
 
@@ -79,7 +79,7 @@ public class BoundaryFinderTest {
 
         var matrix = MatrixTestFactory.CreateSmallPixelMatrix4ConnectedHole();
 
-        var boundaryPixels = boundaryFinder.findBoundaryElements(matrix, new EightConnectivity());
+        var boundaryPixels = boundaryFinder.findBoundaryPixels(matrix, new EightConnectivity());
 
         IPixel[] list = {
                 new Pixel(0, 0, 1),
